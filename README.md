@@ -12,7 +12,7 @@ Open `index.html` directly in a browser for a quick static demo. Service entries
 2. Run: `npm install` (only first time) and then `npm start`
 3. Note the local URL, such as `http://localhost:3000`
 4. Find your computer's local IP address, for example with `ipconfig` on Windows.
-5. On another device connected to the different Wi‑Fi, open: `http://<your-computer-ip>:3000`
+5. On another device connected to the different Wi‑Fi/offline, open: `http://<your-computer-ip>:3000`
 
 This serves the prototype over the network so it can be used from a second device without changing the app logic.
 
@@ -24,7 +24,7 @@ This serves the prototype over the network so it can be used from a second devic
 - Service log with vehicle plate, type, wash, attendant, date/time and payment status
 - Log service modal with local persistence
 - Customer history grouped by customer and vehicle
-- Weekly collection and payment health report view
+- Weekly collection and payment summary report view
 - Role-based local sign-in for administrators and users
 - Service entries show the administrator or user who logged them
 - PostgreSQL-ready relational schema in `schema.sql`
