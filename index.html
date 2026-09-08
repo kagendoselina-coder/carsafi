@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carsafi | Vehicle service desk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .login-screen{position:fixed;inset:0;z-index:20;display:grid;place-items:center;background:#edf5f0;padding:24px}.login-card{width:min(420px,100%);background:#fff;border:1px solid #dce8e1;border-radius:14px;padding:34px;box-shadow:0 24px 70px rgba(23,43,42,.12)}.login-brand{padding:0 0 32px}.login-card h1{font:700 30px 'Space Grotesk';letter-spacing:-.7px;margin:8px 0}.login-copy{color:var(--muted);line-height:1.6;margin:0 0 24px}.login-card label{display:block;font-size:12px;font-weight:700;margin:14px 0}.login-card input{display:block;width:100%;border:1px solid #dce7e1;border-radius:7px;padding:12px;margin-top:7px;font:14px 'DM Sans';color:var(--ink)}.login-submit{width:100%;justify-content:center;margin-top:10px}.login-error{color:var(--red);font-size:12px}.demo-hint{color:#98a5a1;font-size:11px;line-height:1.6;margin:22px 0 0}.logout-button{border:0;background:transparent;color:#97a5a1;font-size:18px;cursor:pointer;margin-left:auto}.logout-button:hover{color:var(--red)}.logger{display:block;font-weight:600;font-size:12px}
+      .login-screen[hidden]{display:none}.receipt-button{border:1px solid #dce7e1;background:#f7faf8;color:var(--teal);border-radius:6px;width:30px;height:30px;cursor:pointer}.receipt-button:hover{background:var(--mint)}
+    </style>
+  </head>
+  <body>
+    <div class="login-screen" id="login-screen">
+      <div class="login-card">
+        <div class="brand login-brand"><span class="brand-mark">C</span><span>carsafi</span></div>
+        <p class="eyebrow">Vehicle service desk</p>
+        <h1>Sign in to your workspace</h1>
+        <p class="login-copy">Use your Carsafi account to log services and view the dashboard.</p>
+        <form id="login-form">
+          <label>Email address<input type="email" name="email" value="admin@carsafi.test" required /></label>
+          <label>Password<input type="password" name="password" value="admin123" required /></label>
+          <p class="login-error" id="login-error" hidden>Incorrect email or password.</p>
+          <button class="button primary login-submit" type="submit">Sign in <span>↗</span></button>
+        </form>
+        <p class="demo-hint">Demo accounts: admin@carsafi.test / admin123 · user@carsafi.test / user123</p>
+      </div>
+    </div>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand"><span class="brand-mark">C</span><span>carsafi</span></div>
+        <div class="workspace-label">WORKSPACE</div>
+        <nav>
+          <button class="nav-item active" data-view="overview"><span class="nav-icon">◈</span>Overview</button>
+          <button class="nav-item" data-view="services"><span class="nav-icon">✦</span>Service log</button>
+          <button class="nav-item" data-view="customers"><span class="nav-icon">◉</span>Customers</button>
+          <button class="nav-item" data-view="reports"><span class="nav-icon">▥</span>Reports</button>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="shift-card"><div class="shift-dot"></div><div><strong>Morning shift</strong><span>Open · 08:00–18:00</span></div></div>
+          <button class="nav-item"><span class="nav-icon">⚙</span>Settings</button>
+          <div class="user"><div class="avatar" id="sidebar-avatar">SA</div><div><strong id="sidebar-name">Sam Abdi</strong><span id="sidebar-role">Administrator</span></div><button class="logout-button" id="logout-button" title="Sign out">↪</button></div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar"><div class="mobile-brand"><span class="brand-mark">C</span>carsafi</div><div class="breadcrumb">Workspace <span>/</span> <strong id="page-title">Overview</strong></div><div class="top-actions"><button class="icon-button" aria-label="Notifications">♧<i></i></button><div class="top-avatar" id="top-avatar">SA</div></div></header>
+
+        <section class="content" id="app-content"></section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="service-modal" hidden>
+      <div class="modal">
+        <div class="modal-head"><div><p class="eyebrow">New entry</p><h2>Log a service</h2></div><button class="close-button" data-close-modal>×</button></div>
+        <form id="service-form">
+          <div class="form-grid">
+            <label>Plate number<input name="plate" placeholder="e.g. KDA 284M" required /></label>
+            <label>Vehicle type<select name="vehicle"><option>Sedan</option><option>SUV</option><option>Pickup</option><option>Van</option><option>Motorcycle</option></select></label>
+            <label>Customer name<input name="customer" placeholder="e.g. Amina Noor" required /></label>
+            <label>Attendant<select name="attendant"><option>Juma Kariuki</option><option>Mary Wanjiku</option><option>Peter Otieno</option><option>Faith Njeri</option></select></label>
+            <label>Wash type<select name="wash"><option value="Body wash" data-price="200">Body wash - KES 200</option><option value="Engine" data-price="200">Engine - KES 200</option><option value="Full" data-price="350">Full - KES 350</option><option value="Interior clean" data-price="200">Interior clean - KES 200</option></select></label>
+            <label>Amount (KES)<input type="number" name="amount" min="0" placeholder="0" required /></label>
+            <label>Payment status<select name="status"><option value="paid">Paid</option><option value="unpaid">Unpaid</option><option value="partial">Partially paid</option></select></label>
+            <label>Date & time<input type="datetime-local" name="datetime" required /></label>
+          </div>
+          <label>Notes<textarea name="notes" rows="3" placeholder="Optional service notes..."></textarea></label>
+          <div class="modal-footer"><button type="button" class="button ghost" data-close-modal>Cancel</button><button class="button primary" type="submit">Save service <span>↗</span></button></div>
+        </form>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
