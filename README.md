@@ -2,17 +2,17 @@
 
 A static vehicle service desk prototype for registration, wash logging, customer history, payment tracking and collection reports.
 
-## Run on the same device
+## Run on the different device
 
 Open `index.html` directly in a browser for a quick static demo. Service entries are persisted in browser local storage under `carsafi-services`.
 
-## Run on another device on the same network
+## Run on another device on different network
 
 1. Open a terminal in the project folder.
 2. Run: `npm install` (only first time) and then `npm start`
 3. Note the local URL, such as `http://localhost:3000`
 4. Find your computer's local IP address, for example with `ipconfig` on Windows.
-5. On another device connected to the same Wi‑Fi, open: `http://<your-computer-ip>:3000`
+5. On another device connected to the different Wi‑Fi, open: `http://<your-computer-ip>:3000`
 
 This serves the prototype over the network so it can be used from a second device without changing the app logic.
 
